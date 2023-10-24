@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-vercel": "^3.0.3",
 		"svelte-dnd-action": "^0.9.31"
 	}
 }
