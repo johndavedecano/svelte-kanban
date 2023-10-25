@@ -2,6 +2,7 @@
   // @ts-nocheck
   import { dndzone } from "svelte-dnd-action";
   import { flip } from "svelte/animate";
+  import BoardCard from "./board-card.svelte";
 
   const flipDurationMs = 200;
 
@@ -10,7 +11,6 @@
 
   function handleSort(e) {
     items = e.detail.items;
-    console.log(items);
   }
 </script>
 
@@ -29,17 +29,11 @@
   >
     {#each items as item (item.id)}
       <div
-        class="board-card"
         key={item.id}
         animate:flip={{ duration: flipDurationMs }}
+        class="board-card"
       >
-        <div
-          class="board-card-title"
-          contenteditable
-          bind:textContent={item.title}
-        >
-          {item.title}
-        </div>
+        <BoardCard bind:item />
       </div>
     {/each}
   </div>
