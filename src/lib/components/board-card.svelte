@@ -1,31 +1,35 @@
 <script>
   // @ts-nocheck
+  import store from "$lib/store";
 
   export let item = { id: undefined };
 
-  let edit = true;
+  const toggleModal = () => {
+    store.update((v) => {
+      return {
+        ...v,
+        modal: !v.modal,
+      };
+    });
+  };
+
+  $: console.log($store.modal);
 </script>
 
-<div class="board-card-header">
-  {#if edit}
-    <div
-      class="board-card-title"
-      contenteditable
-      bind:textContent={item.title}
-      on:blur={() => (edit = false)}
-    >
-      {item.title}
-    </div>
-  {:else}
-    <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <!-- svelte-ignore a11y-no-static-element-interactions -->
-    <div class="board-card-title" on:click={() => (edit = true)}>
-      {item.title}
-    </div>
-  {/if}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<div class="board-card-header" on:click={toggleModal}>
+  <!-- svelte-ignore missing-declaration -->
+  <div class="board-card-title">
+    {item.title}
+  </div>
 </div>
 
-<div class="board-card-content">
+<!-- svelte-ignore missing-declaration -->
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div class="board-card-content" on:click={toggleModal}>
   {#if item.subtitle}
     <div class="board-card-subtitle">{item.subtitle}</div>
   {/if}

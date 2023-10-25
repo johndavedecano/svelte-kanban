@@ -41,7 +41,7 @@
 
 <style lang="postcss">
   .board {
-    @apply rounded-md bg-gray-50 flex flex-col;
+    @apply shadow-lg bg-gray-50 flex flex-col;
     min-width: 250px;
     max-width: 250px;
     min-height: 200px;
